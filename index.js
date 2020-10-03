@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const http = require('http');
 // require('dotenv').config(); | for development only
 
 const client = new Discord.Client();
@@ -34,3 +35,8 @@ client.on('message', async message => {
 })
 
 client.login(process.env.DISCORD_KEY)
+
+const httpServerSoHerokuWorks = http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end("Heroku can go fuck itself!")
+}).listen(process.env.PORT)
