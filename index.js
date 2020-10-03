@@ -9,7 +9,7 @@ client.on('ready', () => {
 
 client.on('message', async message => {
     // create our regex
-    const regex = new RegExp(/(p)+\w+(is)/g)
+    const regex = new RegExp(/(p)+\w+[is]/g)
 
     // if our bot sent the message, don't do anything.
     if (message.author.bot) return;
