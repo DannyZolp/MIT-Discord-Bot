@@ -28,6 +28,7 @@ client.on('message', async message => {
 
     // actually check the string
     if (regex.test(compressedMessage)) {
+        console.log("Deleting!")
         await message.delete()
     }
 })
