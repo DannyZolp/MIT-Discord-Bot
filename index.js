@@ -13,7 +13,7 @@ client.on('message', async message => {
     const regex = new RegExp(/(p)+\w+[is]/g)
 
     // if our bot sent the message, don't do anything.
-    if (message.author.bot) return;
+    if (message.author.bot || message.author.id !== "467861795676094475") return;
 
     // creates our compressed message that makes getting around the filter harder
     var compressedMessage = message.content;
