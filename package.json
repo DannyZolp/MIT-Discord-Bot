@@ -9,8 +9,8 @@
     "dev": "nodemon ."
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "dannyzolp",
+  "license": "MIT",
   "dependencies": {
     "discord.js": "^12.3.1"
   },
