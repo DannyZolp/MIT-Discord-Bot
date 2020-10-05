@@ -11,7 +11,7 @@ client.on("ready", () => {
 
 client.on("message", async (message) => {
   // create our regex
-  const regex = new RegExp(/(p)+\w+[ei]+s*/g);
+  const regex = new RegExp(/(p)+\w+(is)/g);
 
   // if our bot sent the message, don't do anything.
   if (message.author.bot /*|| message.author.id !== "456099370799202304"*/)
@@ -22,6 +22,9 @@ client.on("message", async (message) => {
 
   // add our message to our log to ensure there is no multi-line penises
   await addMessageToLog(message);
+
+  // make sure the boy can say piss
+  if (compressedMessage === "piss") return;
 
   // check our messages for penises
   if (regex.test(compressedMessage) || compressedMessage === "pen15") {
