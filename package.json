@@ -4,9 +4,11 @@
   "description": "My friends say \"penis\" too much and it pisses me off, so I'm going to find a way to stop it.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node .",
-    "dev": "nodemon ."
+    "test": "",
+    "start": "tsc && node dist",
+    "build": "tsc",
+    "lint": "eslint '*/**/*.{js,ts,tsx}'",
+    "fix": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "keywords": [],
   "author": "dannyzolp",
@@ -16,9 +18,15 @@
     "dictionary-en-gb": "^2.2.2",
     "discord.js": "^12.3.1",
     "retext": "^7.0.1",
-    "retext-spell": "^4.0.0"
+    "retext-spell": "^4.0.0",
+    "typescript": "^4.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0"
   }
 }
