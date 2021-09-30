@@ -1,43 +1,59 @@
-import { Client, Message } from 'discord.js';
-const retext = require('retext');
-const spell = require('retext-spell');
-const dictionary = require('dictionary-en-gb');
-const http = require('http');
+import dotenv from "dotenv";
+dotenv.config();
+import { Client, Message } from "discord.js";
+import retext from "retext";
+import spell from "retext-spell";
+import dictionary from "dictionary-en-gb";
+import { remove } from "diacritics";
 
 const bot = new Client();
 
-bot.on('ready', () => {
-    console.log(`Connected to API as ${bot.user.tag}`);
+bot.on("ready", () => {
+  console.log(`Connected to API as ${bot.user.tag}`);
 });
 
-bot.on('message', (message: Message) => {
-    retext()
-        .use(spell, dictionary)
-        .process(message.content, (err, file) => {
-            if (message.content.includes('penis') || message.content.includes('pen15')) {
+bot.on("message", (message: Message) => {
+  const text = remove(message.content);
+
+  retext()
+    .use(spell, dictionary)
+    .process(text, (err, file) => {
+      if (
+        text.includes("deez") ||
+        text.includes("nuts") ||
+        (text.includes("sus") && !text.includes("suspicious")) ||
+        (text.includes("among") && text.includes("us"))
+      ) {
+        message.delete();
+        return;
+      }
+      if (file.messages !== []) {
+        file.messages.forEach((element) => {
+          console.log(element.expected);
+          element.expected.forEach((expected) => {
+            switch (expected) {
+              case "jeez":
                 message.delete();
+                break;
+              case "Dee":
+                message.delete();
+                break;
+              case "nuts":
+                message.delete();
+                break;
+              case "amigos":
+                message.delete();
+                break;
+              case "suss":
+                message.delete();
+              default: {
                 return;
+              }
             }
-            if (file.messages !== []) {
-                file.messages.forEach((element) => {
-                    element.expected.forEach((expected) => {
-                        if (expected === 'penis') {
-                            message.delete();
-                        }
-                    });
-                });
-            }
+          });
         });
+      }
+    });
 });
 
 bot.login(process.env.BOT_TOKEN);
-
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end(`Connected to API as ${bot.user.tag}`);
-});
-
-server.listen(process.env.PORT, '127.0.0.1', () => {
-    console.log('Health check successfully initialized');
-});
